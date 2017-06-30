@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import displayValueReducer from './displayValueReducer';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  displayValue: displayValueReducer,
 });
 
 export default rootReducer;
