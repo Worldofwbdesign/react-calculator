@@ -34,12 +34,14 @@ class DigitButtons extends Component {
     const digits = ['CE', 'C','<', '7', '8', '9', '4', '5', '6', '1', '2', '3', '\u00B1', '0', '.'];
 
     return digits.map((digit) => {
-      return <Button
-        onClick={(event) => this.onButtonClick(event.target.textContent)}
-        label={digit}
-        key={digit}
-        primary={true}
-      />
+      return (
+        <Button
+          onClick={(event) => this.onButtonClick(event.target.textContent)}
+          label={digit}
+          key={digit}
+          primary={true}
+        />
+      )
     })
   }
 

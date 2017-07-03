@@ -5,7 +5,7 @@ import { executeOperation } from '../actions/operationActions';
 
 class OperationButtons extends Component {
   renderDigitButtons() {
-    const digits = ['/', 'x','+', '-', '='];
+    const digits = ['/', '*','+', '-', '='];
 
     return digits.map((digit) => {
       return (

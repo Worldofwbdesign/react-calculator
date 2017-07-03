@@ -1,64 +1,43 @@
-import { DO_OPERATION, SET_OPERATION } from './types';
-import { setPrevValue } from './valueActions';
-import { setLastValue } from './lastValueActions';
+import { DO_OPERATION, CHANGE_CURRENT_OPERATION, SET_CURRENT_OPERATION, CONVERT_OPERATION } from './types';
 import { onWaitingSecond, offWaitingSecond } from './waitingSecondNumberActions';
 import { updateOperation, addHistoryItem, clearOperation } from './operationsHistoryActions';
+import { toggleReadyResult } from './resultIsReadyActions';
 
 export function executeOperation(operation) {
   return (dispatch, getState) => {
-    const { prevValue, displayValue, lastValue, stateOperation} = getState();
-    const nextValue = displayValue;
-
-    if (operation === '=') {
-      if (!lastValue) {
-        dispatch(setLastValue(nextValue));
-        dispatch(formatOperation(parseFloat(prevValue), parseFloat(nextValue), stateOperation, operation));
-      } else {
-        dispatch(formatOperation(parseFloat(nextValue), parseFloat(lastValue), stateOperation, operation));
-      }
-      dispatch(onWaitingSecond());
-    }
-
-    else {
-      if (prevValue) {
-        if (!lastValue) {
-          dispatch(setLastValue(nextValue));
-          dispatch(formatOperation(parseFloat(prevValue), parseFloat(nextValue), operation));
-        } else {
-          dispatch(formatOperation(parseFloat(nextValue), parseFloat(lastValue), operation));
-        }
-      } else {
-        dispatch(setPrevValue(nextValue));
-      }
-      dispatch(setOperation(operation));
-      dispatch(onWaitingSecond());
-      dispatch(updateOperation(nextValue + ' ' + operation));
+    const { displayValue } = getState();
+    dispatch(updateOperation(displayValue + operation));
+    dispatch(onWaitingSecond());
+    if (operation !== '=') {
+      dispatch(changeCurrentOperation(displayValue + operation));
+    } else {
+      dispatch(changeCurrentOperation(displayValue));
+      dispatch(convertOperation());
     }
   }
 }
 
-export function setOperation(operation) {
-  return {
-    type: SET_OPERATION,
-    payload: operation
-  }
-}
-
-export function formatOperation(prevValue, nextValue, operation, clickOperation) {
+export function convertOperation() {
   return (dispatch, getState) => {
-    const { currentOperation } = getState();
-    const operations = {
-      '/': (prevValue, nextValue) => prevValue / nextValue,
-      'x': (prevValue, nextValue) => prevValue * nextValue,
-      '+': (prevValue, nextValue) => prevValue + nextValue,
-      '-': (prevValue, nextValue) => prevValue - nextValue,
-    }
-    const res = operations[operation](prevValue, nextValue);
-    if (clickOperation === '=') {
-      dispatch(addHistoryItem(`${currentOperation} ${nextValue} = ${res}`));
-      dispatch(clearOperation());
-    }
+    const { currentOperationFunction } = getState();
+    const operation = new Function('currentOperationFunction', 'return ' + currentOperationFunction);
+    const res = operation(currentOperationFunction);
     dispatch(doOperation(String(res)));
+    dispatch(setCurrentOperation(String(res)));
+  }
+}
+
+export function changeCurrentOperation(val) {
+  return {
+    type: CHANGE_CURRENT_OPERATION,
+    payload: val
+  }
+}
+
+export function setCurrentOperation(val) {
+  return {
+    type: SET_CURRENT_OPERATION,
+    payload: val
   }
 }
 

@@ -14,12 +14,6 @@ export const DO_OPERATION = 'DO_OPERATION';
 export const DO_SINGLE_OPERATION = 'DO_SINGLE_OPERATION';
 export const SET_OPERATION  = 'SET_OPERATION';
 
-// previous value
-export const SET_PREV_VALUE = 'SET_PREV_VALUE';
-
-// next value
-export const SET_LAST_VALUE = 'SET_NEXT_VALUE';
-
 // waiting second operand
 export const ON_WAITING_SECOND_NUMBER = 'ON_WAITING_SECOND_NUMBER';
 export const OFF_WAITING_SECOND_NUMBER = 'OFF_WAITING_SECOND_NUMBER';
@@ -34,3 +28,11 @@ export const MEMORY_CHANGE = 'MEMORY_CHANGE';
 export const MEMORY_PLUS = 'MEMORY_PLUS';
 export const MEMORY_MINUS = 'MEMORY_MINUS';
 export const MEMORY_CLEAR = 'MEMORY_CLEAR';
+
+// Operations
+export const CHANGE_CURRENT_OPERATION = 'CHANGE_CURRENT_OPERATION';
+export const CONVERT_OPERATION = 'CONVERT_OPERATION';
+export const SET_CURRENT_OPERATION = 'SET_CURRENT_OPERATION';
+
+// ResultIsReady
+export const TOGGLE_READY_RESULT = 'TOGGLE_READY_RESULT';
