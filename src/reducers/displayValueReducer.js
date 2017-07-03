@@ -1,4 +1,4 @@
-import { CHANGE_DISPLAY_VALUE, DELETE_LAST_DIGIT, CLEAR_DISPLAY_VALUE, CHANGE_SIGN, ADD_DOT, DO_OPERATION } from '../actions/types';
+import { CHANGE_DISPLAY_VALUE, DELETE_LAST_DIGIT, CLEAR_DISPLAY_VALUE, CHANGE_SIGN, ADD_DOT, DO_OPERATION, MEMORY_CLEAR } from '../actions/types';
 
 export default (state = '0', action) => {
   switch (action.type) {
@@ -15,7 +15,6 @@ export default (state = '0', action) => {
         return state + '.';
       }
     case DO_OPERATION:
-      console.log(action.payload);
       return action.payload;
     default:
       return state;

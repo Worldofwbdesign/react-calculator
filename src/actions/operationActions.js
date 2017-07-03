@@ -12,9 +12,9 @@ export function executeOperation(operation) {
     if (operation === '=') {
       if (!lastValue) {
         dispatch(setLastValue(nextValue));
-        dispatch(doOperation(parseFloat(prevValue), parseFloat(nextValue), stateOperation, operation));
+        dispatch(formatOperation(parseFloat(prevValue), parseFloat(nextValue), stateOperation, operation));
       } else {
-        dispatch(doOperation(parseFloat(nextValue), parseFloat(lastValue), stateOperation, operation));
+        dispatch(formatOperation(parseFloat(nextValue), parseFloat(lastValue), stateOperation, operation));
       }
       dispatch(onWaitingSecond());
     }
@@ -23,9 +23,9 @@ export function executeOperation(operation) {
       if (prevValue) {
         if (!lastValue) {
           dispatch(setLastValue(nextValue));
-          dispatch(doOperation(parseFloat(prevValue), parseFloat(nextValue), operation));
+          dispatch(formatOperation(parseFloat(prevValue), parseFloat(nextValue), operation));
         } else {
-          dispatch(doOperation(parseFloat(nextValue), parseFloat(lastValue), operation));
+          dispatch(formatOperation(parseFloat(nextValue), parseFloat(lastValue), operation));
         }
       } else {
         dispatch(setPrevValue(nextValue));
@@ -44,12 +44,12 @@ export function setOperation(operation) {
   }
 }
 
-export function doOperation(prevValue, nextValue, operation, clickOperation) {
+export function formatOperation(prevValue, nextValue, operation, clickOperation) {
   return (dispatch, getState) => {
     const { currentOperation } = getState();
     const operations = {
       '/': (prevValue, nextValue) => prevValue / nextValue,
-      '*': (prevValue, nextValue) => prevValue * nextValue,
+      'x': (prevValue, nextValue) => prevValue * nextValue,
       '+': (prevValue, nextValue) => prevValue + nextValue,
       '-': (prevValue, nextValue) => prevValue - nextValue,
     }
@@ -58,11 +58,13 @@ export function doOperation(prevValue, nextValue, operation, clickOperation) {
       dispatch(addHistoryItem(`${currentOperation} ${nextValue} = ${res}`));
       dispatch(clearOperation());
     }
-    dispatch({
-      type: DO_OPERATION,
-      payload: res
-    })
+    dispatch(doOperation(String(res)));
   }
+}
 
-
+export function doOperation(res) {
+  return {
+    type: DO_OPERATION,
+    payload: res
+  }
 }

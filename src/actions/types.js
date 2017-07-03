@@ -11,6 +11,7 @@ export const ADD_DOT = 'ADD_DOT';
 
 // operations
 export const DO_OPERATION = 'DO_OPERATION';
+export const DO_SINGLE_OPERATION = 'DO_SINGLE_OPERATION';
 export const SET_OPERATION  = 'SET_OPERATION';
 
 // previous value
@@ -27,3 +28,9 @@ export const OFF_WAITING_SECOND_NUMBER = 'OFF_WAITING_SECOND_NUMBER';
 export const ADD_HISTORY_ITEM = 'ADD_HISTORY_ITEM';
 export const UPDATE_OPERATION = 'UPDATE_OPERATION';
 export const CLEAR_OPERATION = 'CLEAR_OPERATION';
+
+// Memory value
+export const MEMORY_CHANGE = 'MEMORY_CHANGE';
+export const MEMORY_PLUS = 'MEMORY_PLUS';
+export const MEMORY_MINUS = 'MEMORY_MINUS';
+export const MEMORY_CLEAR = 'MEMORY_CLEAR';

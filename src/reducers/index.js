@@ -6,6 +6,7 @@ import operationReducer from './operationReducer';
 import waitingSecondNumberReducer from './waitingSecondNumberReducer';
 import operationsHistoryReducer from './operationsHistoryReducer';
 import currentOperationReducer from './currentOperationReducer';
+import memoryValueReducer from './memoryValueReducer';
 
 const rootReducer = combineReducers({
   displayValue: displayValueReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   waitingSecondNumber: waitingSecondNumberReducer,
   lastValue: lastValueReducer,
   operationsHistory: operationsHistoryReducer,
-  currentOperation: currentOperationReducer
+  currentOperation: currentOperationReducer,
+  memoryValue: memoryValueReducer,
 });
 
 export default rootReducer;

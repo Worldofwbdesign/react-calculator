@@ -42,7 +42,7 @@ body {
   position: absolute;
   right: -400px;
   top: 0;
-  width: 400px;
+  width: 380px;
   height: 100%;
 }
 
@@ -84,4 +84,8 @@ body {
 .btn > button > div > div {
   height: 60px !important;
   height: 60px;
+}
+
+.btn_disabled span {
+  line-height: 36px !important;
 }

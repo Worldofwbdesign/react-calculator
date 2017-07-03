@@ -5,14 +5,16 @@ import { executeOperation } from '../actions/operationActions';
 
 class OperationButtons extends Component {
   renderDigitButtons() {
-    const digits = ['/', '*','+', '-', '='];
+    const digits = ['/', 'x','+', '-', '='];
 
     return digits.map((digit) => {
-      return <Button
-        onClick={(event) => this.props.executeOperation(event.target.textContent)}
-        label={digit}
-        key={digit}
-      />
+      return (
+        <Button
+          onClick={(event) => this.props.executeOperation(event.target.textContent)}
+          label={digit}
+          key={digit}
+        />
+      )
     })
   }
 

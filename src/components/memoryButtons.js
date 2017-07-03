@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button';
+import { memoryChange, displayMemoryResult, memoryPlus, memoryMinus, memoryClear } from '../actions/memoryActions';
 
 class MemoryButtons extends Component {
-  renderDigitButtons() {
-    const digits = ['MC', 'MR','M+', 'M-', 'MS'];
-
-    return digits.map((digit) => {
-      return <Button
-        onClick={(event) => alert(event.target.textContent)}
-        label={digit}
-        key={digit}
-      />
-    })
-  }
-
   render() {
     return (
       <div className="memory-buttons">
-          {this.renderDigitButtons()}
+        <Button onClick={() => this.props.memoryChange()} label='MS' key={0} />
+        <Button onClick={() => this.props.displayMemoryResult()} label='MR' key={1} />
+        <Button onClick={() => this.props.memoryClear()} label='MC' key={2} />
+        <Button onClick={() => this.props.memoryPlus()} label='M+' key={3} />
+        <Button onClick={() => this.props.memoryMinus()} label='M-' key={4} />
       </div>
     )
   }
 }
 
-export default connect()(MemoryButtons);
+export default connect(null, { memoryChange, displayMemoryResult, memoryPlus, memoryMinus, memoryClear })(MemoryButtons);

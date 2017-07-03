@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 
@@ -11,11 +12,17 @@ class operationsHistory extends Component {
       )
     })
   }
+
   render() {
+    if (this.props.history.length === 0) {
+      return <div></div>
+    }
     return (
-      <List className="history">
-        {this.renderHistory()}
-      </List>
+      <Paper zDepth={1}>
+        <List className="history">
+          {this.renderHistory()}
+        </List>
+      </Paper>
     )
   }
 }
