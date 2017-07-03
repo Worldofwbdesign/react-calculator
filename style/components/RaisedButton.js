@@ -1,4 +1,5 @@
 export default {
+  className: 'btn',
   style: {
     minWidth: 60,
     margin: 2

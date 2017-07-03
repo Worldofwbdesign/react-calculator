@@ -5,6 +5,7 @@ import MemoryButtons from './memoryButtons';
 import DigitButtons from './digitButtons';
 import OperationButtons from './operationButtons';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import ExchangeButtons from './currencyButtons';
 
 const ButtonsField = (props) => {
   const style = {
@@ -18,6 +19,7 @@ const ButtonsField = (props) => {
       <MemoryButtons/>
       <DigitButtons/>
       <OperationButtons/>
+      <ExchangeButtons/>
     </Paper>
   )
 }

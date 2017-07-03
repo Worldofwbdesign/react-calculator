@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import RaisedButtonStyle from '../../style/components/RaisedButton';
+import Button from './button';
 
 class MemoryButtons extends Component {
   renderDigitButtons() {
     const digits = ['MC', 'MR','M+', 'M-', 'MS'];
 
     return digits.map((digit) => {
-      return <RaisedButton
-        {...RaisedButtonStyle}
-        className="btn"
+      return <Button
         onClick={(event) => alert(event.target.textContent)}
         label={digit}
         key={digit}

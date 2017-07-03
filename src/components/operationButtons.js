@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import RaisedButtonStyle from '../../style/components/RaisedButton';
+import Button from './button';
+import { executeOperation } from '../actions/operationActions';
 
 class OperationButtons extends Component {
   renderDigitButtons() {
     const digits = ['/', '*','+', '-', '='];
 
     return digits.map((digit) => {
-      return <RaisedButton
-        {...RaisedButtonStyle}
-        className="btn"
-        onClick={(event) => alert(event.target.textContent)}
+      return <Button
+        onClick={(event) => this.props.executeOperation(event.target.textContent)}
         label={digit}
         key={digit}
       />
@@ -27,4 +25,4 @@ class OperationButtons extends Component {
   }
 }
 
-export default connect()(OperationButtons);
+export default connect(null, { executeOperation })(OperationButtons);

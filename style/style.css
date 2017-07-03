@@ -10,12 +10,40 @@ body {
 }
 
 .calculator {
-  max-width: 50%;
-  margin: 3em auto;
+  position: relative;
+  max-width: 830px;
+  margin: 5em auto;
 }
 
-.calculator__header {
-  text-align: center;
+.display-wrapp {
+  position: relative;
+}
+
+.current-operation {
+  display: block;
+  width: 94%;
+  overflow: hidden;
+  position: absolute;
+  right: 24px;
+  top: 10px;
+  color: #e4e4e4;
+  font-size: 16px;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 9999;
+}
+
+.calculator__display {
+  text-align: right;
+}
+
+.operations-history {
+  position: absolute;
+  right: -400px;
+  top: 0;
+  width: 400px;
+  height: 100%;
 }
 
 .calculator__digits-field,
@@ -28,10 +56,13 @@ body {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
 }
 
 .calculator__digits-field {
   padding: 20px;
+  justify-content: space-between;
 }
 
 .digit-buttons {
@@ -44,6 +75,10 @@ body {
 
 .engineer-buttons {
   width: 192px;
+}
+
+.currency-section {
+  width: 256px;
 }
 
 .btn > button > div > div {
