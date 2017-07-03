@@ -10,9 +10,11 @@ export function executeOperation(operation) {
     dispatch(onWaitingSecond());
     if (operation !== '=') {
       dispatch(changeCurrentOperation(displayValue + operation));
+      dispatch(toggleReadyResult());
     } else {
       dispatch(changeCurrentOperation(displayValue));
       dispatch(convertOperation());
+      dispatch(toggleReadyResult())
     }
   }
 }
