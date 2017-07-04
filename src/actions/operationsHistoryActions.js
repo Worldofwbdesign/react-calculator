@@ -1,10 +1,15 @@
-import { ADD_HISTORY_ITEM, UPDATE_OPERATION, CLEAR_OPERATION } from './types';
+import { ADD_HISTORY_ITEM, UPDATE_OPERATION, CLEAR_OPERATION, CLEAR_HISTORY } from './types';
 
 export function addHistoryItem(item) {
-  console.log(item);
   return {
     type: ADD_HISTORY_ITEM,
     payload: item
+  }
+}
+
+export function clearHistory(item) {
+  return {
+    type: CLEAR_HISTORY,
   }
 }
 

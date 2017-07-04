@@ -5,14 +5,15 @@ import { doSingleOperation } from '../actions/singleOperationActions';
 
 class engineerButtons extends Component {
   renderDigitButtons() {
-    const digits = ['x2', 'x3', 'x5', 'sin', 'cos', 'tan', '√', '10x', 'log', 'exp', '1/x', 'ln', 'n!'];
+    const buttons = ['x2', 'x3', 'x5', 'sin', 'cos', 'tan', '√', '10x', 'log', 'exp', '1/x', 'ln', 'n!'];
 
-    return digits.map((digit) => {
+    return buttons.map((button, index) => {
+      const btnLabel = index < 3 ? <span key={button}>x<sup>{index + 2}</sup></span> : button;
       return (
         <Button
-          onClick={(event) => this.props.doSingleOperation(event.target.textContent)}
-          label={digit}
-          key={digit}
+          onClick={(event) => this.props.doSingleOperation(button)}
+          children={btnLabel}
+          key={button}
           secondary={true}
         />
       )

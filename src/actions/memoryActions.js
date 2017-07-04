@@ -4,7 +4,6 @@ import { doOperation } from './operationActions';
 export function memoryChange() {
   return (dispatch, getState) => {
     const value = parseFloat(getState().displayValue);
-    console.log(value);
     dispatch({
       type: MEMORY_CHANGE,
       payload: value

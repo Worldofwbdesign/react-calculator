@@ -1,7 +1,8 @@
 import { CHANGE_DISPLAY_VALUE, DELETE_LAST_DIGIT, CLEAR_DISPLAY_VALUE, CHANGE_SIGN, ADD_DOT} from './types';
 import { onWaitingSecond, offWaitingSecond } from './waitingSecondNumberActions';
 import { setCurrentOperation } from './operationActions';
-import { toggleReadyResult } from './resultIsReadyActions';
+import { disactivateReadyResult } from './resultIsReadyActions';
+import { clearOperation } from './operationsHistoryActions';
 
 export function executeDisplayValue(val) {
   return (dispatch, getState) => {
@@ -13,7 +14,8 @@ export function executeDisplayValue(val) {
     if (resultIsReady) {
       dispatch(clearDisplayValue());
       dispatch(setCurrentOperation(''));
-      dispatch(toggleReadyResult());
+      dispatch(clearOperation());
+      dispatch(disactivateReadyResult());
     }
     dispatch(changeDisplayValue(val));
   }

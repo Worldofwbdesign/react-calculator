@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import displayValueReducer from './displayValueReducer';
-import operationReducer from './operationReducer';
+import stateMathOperationReducer from './stateMathOperationReducer';
 import waitingSecondNumberReducer from './waitingSecondNumberReducer';
 import operationsHistoryReducer from './operationsHistoryReducer';
 import currentOperationReducer from './currentOperationReducer';
@@ -10,7 +10,7 @@ import resultIsReadyReducer from './resultIsReadyReducer';
 
 const rootReducer = combineReducers({
   displayValue: displayValueReducer,
-  stateOperation: operationReducer,
+  stateMathOperation: stateMathOperationReducer,
   operationsHistory: operationsHistoryReducer,
   currentOperation: currentOperationReducer,
   memoryValue: memoryValueReducer,

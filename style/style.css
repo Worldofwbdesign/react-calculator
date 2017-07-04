@@ -44,6 +44,7 @@ body {
   top: 0;
   width: 380px;
   height: 100%;
+  overflow: auto;
 }
 
 .calculator__digits-field,
@@ -83,7 +84,9 @@ body {
 
 .btn > button > div > div {
   height: 60px !important;
-  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  color: #fff;
 }
 
 .btn_disabled span {
