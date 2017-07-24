@@ -1,13 +1,14 @@
 {
-  "name": "redux-simple-starter",
+  "name": "React engineer calculator",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Calculator built with react and redux",
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack -w",
     "build": "webpack",
     "heroku-postbuild": "cross-env NODE_ENV=production webpack -p --config ./webpack.config.js --progress",
+    "dev": "cross-env NODE_ENV=development webpack -w",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
