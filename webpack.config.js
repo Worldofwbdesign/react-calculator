@@ -24,15 +24,18 @@ module.exports = {
     }]
     },
     plugins: [
-    new webpack.optimize.UglifyJsPlugin({
+        new webpack.optimize.UglifyJsPlugin({
             compressor: {
                 warnings: false
             }
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
     ],
     output: {
       path: __dirname,
-      filename: './public/bundle.js'
+      filename: 'bundle.js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
