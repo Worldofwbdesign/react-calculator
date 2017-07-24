@@ -11,37 +11,48 @@ try {
 }
 
 module.exports = {
-    entry: [
-      './src/index.js'
+  entry: [
+    './src/index.js'
+  ],
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_KEY: JSON.stringify(process.env.API_KEY),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        GITHUB_ACCESS_TOKEN: JSON.stringify(process.env.GITHUB_ACCESS_TOKEN)
+      }
+    })
+  ],
+  output: {
+    path: __dirname,
+    filename: './public/bundle.js'
+  },
+  resolve: {
+    root: __dirname,
+    modulesDirectories: [
+      'node_modules',
     ],
-    module: {
-        loaders: [{
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015', 'stage-0']
-            }
-    }]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        }),
-    ],
-    output: {
-      path: __dirname,
-      filename: 'bundle.js'
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: './'
-    }
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    loaders: [
+      {
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0']
+        },
+        test: /\.js?$/,
+        exclude: /(node_modules|bower_components)/
+      }
+    ]
+  },
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };
