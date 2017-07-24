@@ -14,10 +14,6 @@ module.exports = {
     entry: [
       './src/index.js'
     ],
-    output: {
-      path: __dirname,
-      filename: './public/bundle.js'
-    },
     module: {
         loaders: [{
             exclude: /node_modules/,
@@ -33,7 +29,11 @@ module.exports = {
                 warnings: false
             }
         }),
-  ],
+    ],
+    output: {
+      path: __dirname,
+      filename: './public/bundle.js'
+    },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
