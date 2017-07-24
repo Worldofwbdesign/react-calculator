@@ -1,5 +1,5 @@
 {
-  "name": "React engineer calculator",
+  "name": "ReactEngineerCalculator",
   "version": "1.0.0",
   "description": "Calculator built with react and redux",
   "main": "index.js",
