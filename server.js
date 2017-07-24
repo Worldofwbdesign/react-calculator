@@ -1,17 +1,14 @@
 var express = require('express');
+var app     = express();
 
-// Create our app
-var app = express();
-var port_number = server.listen(process.env.PORT || 3000);
-
-app.use(function (req, res, next){
-  if (req.headers['x-forwarded-proto'] === 'https') {
-    res.redirect('http://' + req.hostname + req.url);
-  } else {
-    next();
-  }
-});
+app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static('public'));
 
-app.listen(port_number);
+//For avoidong Heroku $PORT error
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
